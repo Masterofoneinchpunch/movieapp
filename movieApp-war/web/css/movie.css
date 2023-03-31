@@ -1,0 +1,59 @@
+fieldset {
+  background-color: lightblue;
+  display: inline-block;
+}
+
+legend {
+  background-color: #003366;
+  color: white;
+  padding: 5px;
+}
+.displayText {color: black; font-family: arial; font-size: 10pt; font-weight: normal;}
+.entryLabel {color: blue; font-family: arial; font-size: 10pt; font-weight: bold;}
+.entryTextLong {color: black; font-family: arial; font-size: 10pt; font-weight: normal; width: 400px;}
+.entryText {color: black; font-family: arial; font-size: 10pt; font-weight: normal; width: 200px;}
+.entryTextMedium {color: black; font-family: arial; font-size: 10pt; font-weight: normal; width: 100px;}
+.entryTextYear {color: black; font-family: arial; font-size: 10pt; font-weight: normal; width: 35px;}
+.entryText7Digits {color: black; font-family: arial; font-size: 10pt; font-weight: normal; width: 50px;}
+.center {text-align: center; vertical-align: middle;}
+.left {text-align: left;}
+.edit {font-size: 8pt;}
+.small {font-size: 6pt;}
+.editedInfo {font-size: 7pt; color: gray; text-align: right;}
+.description {color: blue; font-family: arial; font-size: 10pt;}
+.button
+{  
+   color: white; background-color: #003366; font-family: arial; font-size: 10pt; font-weight: bold;
+   text-decoration: none; width: 125px; border-radius: 25px; margin-top: 2px;
+}
+.buttonRelativeSize
+{  
+   color: white; background-color: #003366; font-family: arial; font-size: 10pt; font-weight: bold;
+   text-decoration: none; border-radius: 25px; margin-top: 2px;
+}
+.button:hover, .buttonRelativeSize:hover
+{
+    color: #003366; background-color: white;
+}
+.label {color: #003366; padding-bottom: 0px; margin-top: 5px; margin-bottom: 5px; font-size: 12pt; font-weight: bold;}
+.menu {border-color: green; border-width: 4px; border-style: groove; border-radius: 12px; background-image: url('../images/darkblue.jpg'); background-repeat: repeat-x;}
+.menuTitle {font-size: 40pt; color: darkblue; text-shadow: 2px 2px 4px #000000;}
+.warning {font-weight: bold; color: crimson;}
+.warningLabel {font-weight: bold; color: crimson; font-family: arial; font-size: 10pt;}
+a:link {text-decoration: none;}
+a:hover {color: darkblue; text-shadow: 1px 1px darkblue;}
+textarea.notes {color: black; font-family: arial; font-size: 10pt; font-weight: normal; height: 200px; width: 600px;}
+img.validation {margin-bottom: 2px;}
+.balance {text-align: center; vertical-align: middle}
+table.editable {border-color: black; border-width: 4px; border-style: outset; empty-cells: show; border-collapse: collapse;}
+table.display {border-color: black; border-width: 4px; border-style: outset; empty-cells: show; border-collapse: collapse;}
+.validationimage {text-align: center; vertical-align: middle; width: 22px; display: inline-block;}
+td.validationimage {text-align: center; vertical-align: middle; width: 22px;}
+td.editable {border-color: black; border-width: 2px; border-style: outset;}
+td.display {border-color: black; border-width: 2px; border-style: outset; padding: 2px;}
+tr.highlight {background-color: yellow;}
+thead {color: white; background-color: #003366;}
+select {color: black; font-family: arial; font-size: 10pt; font-weight: normal;}
+h1 {color: #003366; padding-bottom: 0px; margin-top: 5px; margin-bottom: 5px;}
+h2 {color: #003366; padding-bottom: 0px; margin-top: 5px; margin-bottom: 5px;}
+ul {margin: 0;}
