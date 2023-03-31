@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="movieApp-war" default="createMovieAppWar" basedir="." xmlns:webproject2="http://www.netbeans.org/ns/web-project/2">
+    <description>Builds, tests, and runs the project movieApp-war.</description>
+    <import file="nbproject/build-impl.xml"/>
+    
+    <target depends="dist,javadoc" description="Build and Deploy Movie App." name="createMovieAppWar"/>
+    <target depends="init,compile,do-dist,-post-dist" description="Build distribution (WAR)." name="dist"/>
+    <target depends="-init-properties,-do-init,-init-check,-init-macrodef-javac" name="init"/>
+    <target depends="-buildclassesdir,-do-compile" description="Compile project." name="compile"/>
+    <target depends="compile-jsps,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
+    <target description="Build Javadoc." name="javadoc"/>
+
+    <target name="-init-properties">
+        <property file="nbproject/private/private.properties"/>
+        <property file="nbproject/project.properties"/>
+    </target>
+
+    <target name="-do-init">
+        <condition property="have.sources">
+            <available file="${src.dir}"/>
+        </condition>
+        <condition property="do.compile.jsps">
+            <istrue value="${compile.jsps}"/>
+        </condition>
+        <available file="${conf.dir}/MANIFEST.MF" property="has.custom.manifest"/>
+        <property name="do.war.package.with.custom.manifest" value="true"/>
+        <property name="do.tmp.war.package.with.custom.manifest" value="true"/>
+        <property name="build.meta.inf.dir" value="${build.web.dir}/META-INF"/>
+        <property name="application.args" value=""/>        
+        <property name="source.encoding" value="${file.encoding}"/>
+        <property name="includes" value="**"/>
+        <property name="excludes" value=""/>
+        <property name="endorsed.classpath.cmd.line.arg" value=""/>
+        <property name="javac.fork" value="true"/>
+        <echo>Java Specification Version ${java.specification.version}</echo>
+    </target>
+
+    <target name="-init-check">
+        <fail unless="src.dir">Must set src.dir</fail>
+        <fail unless="test.src.dir">Must set test.src.dir</fail>
+        <fail unless="build.dir">Must set build.dir</fail>
+        <fail unless="build.web.dir">Must set build.web.dir</fail>
+        <fail unless="build.generated.dir">Must set build.generated.dir</fail>
+        <fail unless="dist.dir">Must set dist.dir</fail>
+        <fail unless="build.classes.dir">Must set build.classes.dir</fail>
+        <fail unless="dist.javadoc.dir">Must set dist.javadoc.dir</fail>
+        <fail unless="build.test.classes.dir">Must set build.test.classes.dir</fail>
+        <fail unless="build.test.results.dir">Must set build.test.results.dir</fail>
+        <fail unless="build.classes.excludes">Must set build.classes.excludes</fail>
+        <fail unless="dist.war">Must set dist.war</fail>
+        <fail unless="j2ee.server.home">Must set j2ee.server.home</fail>
+        <fail unless="j2ee.platform.classpath">Must set j2ee.platform.classpath</fail>
+    </target>
+
+    <target name="-init-macrodef-javac">
+        <macrodef name="javac" uri="http://www.netbeans.org/ns/web-project/2">
+            <attribute default="${src.dir}" name="srcdir"/>
+            <attribute default="${build.classes.dir}" name="destdir"/>
+            <attribute default="${javac.classpath}:${j2ee.platform.classpath}" name="classpath"/>
+            <attribute default="${javac.processorpath}" name="processorpath"/>
+            <attribute default="${build.generated.sources.dir}/ap-source-output" name="apgeneratedsrcdir"/>
+            <attribute default="${includes}" name="includes"/>
+            <attribute default="${excludes}" name="excludes"/>
+            <attribute default="${javac.debug}" name="debug"/>
+            <attribute default="${empty.dir}" name="gensrcdir"/>
+            <element name="customize" optional="true"/>
+            <sequential>
+                <property location="${build.dir}/empty" name="empty.dir"/>
+                <mkdir dir="${empty.dir}"/>
+                <javac debug="@{debug}" deprecation="${javac.deprecation}" destdir="@{destdir}" encoding="${source.encoding}" excludes="@{excludes}" includeantruntime="false" includes="@{includes}" source="${javac.source}" srcdir="@{srcdir}" target="${javac.target}">
+                    <src>
+                        <dirset dir="@{gensrcdir}" erroronmissingdir="false">
+                            <include name="*"/>
+                        </dirset>
+                    </src>
+                    <classpath>
+                        <path path="@{classpath}"/>
+                    </classpath>
+                    <compilerarg line="${endorsed.classpath.cmd.line.arg}"/>
+                    <compilerarg line="${javac.compilerargs}"/>
+                    <customize/>
+                </javac>
+            </sequential>
+        </macrodef>
+    </target>
+
+    <target name="-buildclassesdir">
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+
+    <target depends="-copy-manifest,-copy-webdir" if="have.sources" name="-do-compile">
+        <webproject2:javac destdir="${build.classes.dir}" gensrcdir="${build.generated.sources.dir}"/>
+        <copy todir="${build.classes.dir}">
+            <fileset dir="${src.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+        </copy>
+    </target>
+
+    <target if="has.custom.manifest" name="-copy-manifest">
+        <mkdir dir="${build.meta.inf.dir}"/>
+        <copy todir="${build.meta.inf.dir}">
+            <fileset dir="${conf.dir}" includes="MANIFEST.MF"/>
+        </copy>
+    </target>
+
+    <target name="-copy-webdir">
+        <copy todir="${build.web.dir}">
+            <fileset dir="${web.docbase.dir}" excludes="${build.web.excludes},${excludes}" includes="${includes}"/>
+        </copy>
+        <copy todir="${build.web.dir}/WEB-INF">
+            <fileset dir="${webinf.dir}" excludes="${build.web.excludes}"/>
+        </copy>
+    </target>
+
+    <target description="Test compile JSP pages to expose compilation errors." if="do.compile.jsps" name="compile-jsps">
+        <mkdir dir="${build.generated.dir}/src"/>
+        <java classname="org.netbeans.modules.web.project.ant.JspC" failonerror="true" fork="true">
+            <arg value="-uriroot"/>
+            <arg file="${basedir}/${build.web.dir}"/>
+            <arg value="-d"/>
+            <arg file="${basedir}/${build.generated.dir}/src"/>
+            <arg value="-die1"/>
+            <arg value="-schemas ${jspc.schemas}"/>
+            <arg value="-dtds ${jspc.dtds}"/>
+            <arg value="-compilerSourceVM ${javac.source}"/>
+            <arg value="-compilerTargetVM ${javac.target}"/>
+            <arg value="-javaEncoding ${source.encoding}"/>
+            <arg value="-sysClasspath ${libs.jsp-compilation-syscp.classpath}"/>
+            <classpath path="${java.home}/../lib/tools.jar:${libs.jsp-compiler.classpath}:${libs.jsp-compilation.classpath}"/>
+        </java>
+        <mkdir dir="${build.generated.dir}/classes"/>
+        <webproject2:javac classpath="${build.classes.dir}:${libs.jsp-compilation.classpath}:${javac.classpath}:${j2ee.platform.classpath}" destdir="${build.generated.dir}/classes" srcdir="${build.generated.dir}/src"/>
+    </target>
+
+    <target if="do.war.package.without.custom.manifest" name="-do-dist-without-manifest">
+        <dirname file="${dist.war}" property="dist.jar.dir"/>
+        <mkdir dir="${dist.jar.dir}"/>
+        <jar compress="${jar.compress}" jarfile="${dist.war}">
+            <fileset dir="${build.web.dir}" excludes="WEB-INF/classes/.netbeans_*"/>
+        </jar>
+    </target>
+
+    <target if="do.war.package.with.custom.manifest" name="-do-dist-with-manifest">
+        <dirname file="${dist.war}" property="dist.jar.dir"/>
+        <mkdir dir="${dist.jar.dir}"/>
+        <jar compress="${jar.compress}" jarfile="${dist.war}" manifest="${build.meta.inf.dir}/MANIFEST.MF">
+            <fileset dir="${build.web.dir}" excludes="WEB-INF/classes/.netbeans_*"/>
+        </jar>
+    </target>
+
+    <target name="-post-dist">
+        <echo>dist.ear.dir: ${dist.ear.dir}</echo>
+        <echo>Copying ${dist.war} to ${j2ee.server.copyTo}/deploy</echo>   
+        <copy file="${dist.war}" todir="${j2ee.server.copyTo}/deploy" />
+    </target>
+    
+    <!--
+    There exist several targets which are by default empty and which can be 
+    used for execution of your tasks. These targets are usually executed 
+    before and after some main targets. They are: 
+
+      -pre-init:                 called before initialization of project properties 
+      -post-init:                called after initialization of project properties 
+      -pre-compile:              called before javac compilation 
+      -post-compile:             called after javac compilation 
+      -pre-compile-single:       called before javac compilation of single file
+      -post-compile-single:      called after javac compilation of single file
+      -pre-compile-test:         called before javac compilation of JUnit tests
+      -post-compile-test:        called after javac compilation of JUnit tests
+      -pre-compile-test-single:  called before javac compilation of single JUnit test
+      -post-compile-test-single: called after javac compilation of single JUunit test
+      -pre-dist:                 called before archive building 
+      -post-dist:                called after archive building 
+      -post-clean:               called after cleaning build products 
+      -pre-run-deploy:           called before deploying
+      -post-run-deploy:          called after deploying
+
+    Example of pluging an obfuscator after the compilation could look like 
+
+        <target name="-post-compile">
+            <obfuscate>
+                <fileset dir="${build.classes.dir}"/>
+            </obfuscate>
+        </target>
+
+    For list of available properties check the imported 
+    nbproject/build-impl.xml file. 
+
+
+    Other way how to customize the build is by overriding existing main targets.
+    The target of interest are: 
+
+      init-macrodef-javac:    defines macro for javac compilation
+      init-macrodef-junit:   defines macro for junit execution
+      init-macrodef-debug:    defines macro for class debugging
+      do-dist:                archive building
+      run:                    execution of project 
+      javadoc-build:          javadoc generation 
+
+    Example of overriding the target for project execution could look like 
+
+        <target name="run" depends="<PROJNAME>-impl.jar">
+            <exec dir="bin" executable="launcher.exe">
+                <arg file="${dist.jar}"/>
+            </exec>
+        </target>
+
+    Notice that overridden target depends on jar target and not only on 
+    compile target as regular run target does. Again, for list of available 
+    properties which you can use check the target you are overriding in 
+    nbproject/build-impl.xml file. 
+
+    -->
+</project>
