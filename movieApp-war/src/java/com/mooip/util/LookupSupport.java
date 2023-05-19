@@ -136,12 +136,14 @@ public final class LookupSupport {
         countries.add(new LookupModel("Canada"));
         countries.add(new LookupModel("China"));
         countries.add(new LookupModel("Czechoslovakia"));
+        countries.add(new LookupModel("Denmark"));
         countries.add(new LookupModel("France"));
         countries.add(new LookupModel("Germany"));
         countries.add(new LookupModel("Hong Kong"));
         countries.add(new LookupModel("India"));
         countries.add(new LookupModel("Indonesia"));
         countries.add(new LookupModel("Iran"));
+        countries.add(new LookupModel("Ireland"));
         countries.add(new LookupModel("Italy"));
         countries.add(new LookupModel("Jamaica"));
         countries.add(new LookupModel("Japan"));
@@ -171,6 +173,7 @@ public final class LookupSupport {
         languages.add(new LookupModel("Bengali"));
         languages.add(new LookupModel("Cantonese"));
         languages.add(new LookupModel("Czech"));
+        languages.add(new LookupModel("Danish"));
         languages.add(new LookupModel("English"));
         languages.add(new LookupModel("French"));
         languages.add(new LookupModel("German"));
