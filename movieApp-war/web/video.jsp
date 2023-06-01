@@ -182,7 +182,14 @@
 
         function createCopy() {
             videoCollection.actionType.value = "CreateCopy";
-            if (confirm("Are you sure you want to create a copy?  This will copy the video portion only and not the extras.")) {
+                        
+            var message = "Are you sure you want to create a copy?";
+            
+            if (videoCollection.copyExtras.checked === false) {
+                message += " This will copy the video portion only and not the extras.";
+            }
+            
+            if (confirm(message)) {
                 videoCollection.submit();
             }
         }    
