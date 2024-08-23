@@ -45,6 +45,7 @@ public final class LookupSupport {
         videoTypes.add(new LookupModel("BD (blu-ray)"));
         videoTypes.add(new LookupModel("BD/DVD Combo"));
         videoTypes.add(new LookupModel("3D/BD/DVD Combo"));
+        videoTypes.add(new LookupModel("3D/BD Combo"));
         videoTypes.add(new LookupModel("4K/BD Combo"));
         videoTypes.add(new LookupModel("DVD"));
         videoTypes.add(new LookupModel("DVD-MOD"));
@@ -132,11 +133,14 @@ public final class LookupSupport {
         countries.add(new LookupModel("Argentina"));
         countries.add(new LookupModel("Austria"));
         countries.add(new LookupModel("Australia"));
+        countries.add(new LookupModel("Belgium"));
         countries.add(new LookupModel("Brazil"));
         countries.add(new LookupModel("Canada"));
         countries.add(new LookupModel("China"));
+        countries.add(new LookupModel("Cuba"));
         countries.add(new LookupModel("Czechoslovakia"));
         countries.add(new LookupModel("Denmark"));
+        countries.add(new LookupModel("Finland"));
         countries.add(new LookupModel("France"));
         countries.add(new LookupModel("Germany"));
         countries.add(new LookupModel("Hong Kong"));
@@ -144,6 +148,7 @@ public final class LookupSupport {
         countries.add(new LookupModel("Indonesia"));
         countries.add(new LookupModel("Iran"));
         countries.add(new LookupModel("Ireland"));
+        countries.add(new LookupModel("Isreal"));
         countries.add(new LookupModel("Italy"));
         countries.add(new LookupModel("Jamaica"));
         countries.add(new LookupModel("Japan"));
@@ -175,8 +180,10 @@ public final class LookupSupport {
         languages.add(new LookupModel("Czech"));
         languages.add(new LookupModel("Danish"));
         languages.add(new LookupModel("English"));
+        languages.add(new LookupModel("Finnish"));
         languages.add(new LookupModel("French"));
         languages.add(new LookupModel("German"));
+        languages.add(new LookupModel("Hebrew"));
         languages.add(new LookupModel("Indonesian"));
         languages.add(new LookupModel("Italian"));
         languages.add(new LookupModel("Japanese"));
@@ -188,6 +195,7 @@ public final class LookupSupport {
         languages.add(new LookupModel("Polish"));
         languages.add(new LookupModel("Portugese"));
         languages.add(new LookupModel("Russian"));
+        languages.add(new LookupModel("Slovak"));
         languages.add(new LookupModel("Spanish"));
         languages.add(new LookupModel("Swedish"));
         languages.add(new LookupModel("Thai"));
